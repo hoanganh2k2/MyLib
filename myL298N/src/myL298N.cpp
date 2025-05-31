@@ -9,19 +9,43 @@ void myL298N::begin() {
     pinMode(_in2, OUTPUT);
     pinMode(_in3, OUTPUT);
     pinMode(_in4, OUTPUT);
+    stop();
+}
+
+void myL298N::setMotorL(bool forward) {
+    digitalWrite(_in1, forward ? HIGH : LOW);
+    digitalWrite(_in2, forward ? LOW : HIGH);
+}
+
+void myL298N::setMotorR(bool forward) {
+    digitalWrite(_in3, forward ? HIGH : LOW);
+    digitalWrite(_in4, forward ? LOW : HIGH);
 }
 
 void myL298N::forward() {
-    digitalWrite(_in1, HIGH);
-    digitalWrite(_in2, LOW);
-    digitalWrite(_in3, HIGH);
-    digitalWrite(_in4, LOW);
+    setMotorL(true);
+    setMotorR(true);
 }
 
 void myL298N::backward() {
-    digitalWrite(_in1, LOW);
+    setMotorL(false);
+    setMotorR(false);
+}
+
+void myL298N::turnright() {
+    setMotorL(true);
+    setMotorR(false);
+}
+
+void myL298N::turnleft() {
+    setMotorL(false);
+    setMotorR(true);
+}
+
+void myL298N::brake() {
+    digitalWrite(_in1, HIGH);
     digitalWrite(_in2, HIGH);
-    digitalWrite(_in3, LOW);
+    digitalWrite(_in3, HIGH);
     digitalWrite(_in4, HIGH);
 }
 

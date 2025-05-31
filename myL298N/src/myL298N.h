@@ -7,7 +7,12 @@ public:
     void begin();
     void forward();
     void backward();
+    void turnright();
+    void turnleft();
+    void brake();
     void stop();
+    void setMotorR(bool forward);
+    void setMotorL(bool forward);
 private:
     int _in1, _in2, _in3, _in4;
 };
